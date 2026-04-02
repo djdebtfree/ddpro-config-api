@@ -1,6 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default function handler(req: any, res: any) {
   if (req.url === '/health' || req.url === '/') {
     return res.json({ status: 'ok', service: 'ddpro-config-api' });
   }
