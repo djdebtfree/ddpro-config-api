@@ -52,4 +52,8 @@ app.get('/config', auth, (_req, res) => {
 });
 
 const PORT = parseInt(process.env.PORT || '3000');
-app.listen(PORT, () => console.log(`ddpro-config-api listening on port ${PORT}`));
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`ddpro-config-api listening on port ${PORT}`));
+}
+
+export default app;
