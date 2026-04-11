@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "rewrites": [
+    { "source": "/sandy-brain", "destination": "/api/sandy-brain" },
+    { "source": "/(.*)", "destination": "/api" }
+  ]
 }
