@@ -1,4 +1,6 @@
 import express from 'express';
+import { processSandyBrain } from './sandy-brain/sandy-brain';
+import { SandyBrainInput } from './sandy-brain/types';
 import cors from 'cors';
 import 'dotenv/config';
 
@@ -19,6 +21,17 @@ function auth(req: any, res: any, next: any) {
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'ddpro-config-api' });
+});
+
+app.post('/sandy-brain', auth, async (req, res) => {
+  try {
+    const input: SandyBrainInput = req.body;
+    const output = await processSandyBrain(input);
+    res.json(output);
+  } catch (error: any) {
+    console.error('Sandy Brain API error:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get('/config', auth, (_req, res) => {
